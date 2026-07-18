@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "capsuleId": "com.eignexus.next.capsule",
+  "productName": "NEXUS Next Capsule",
+  "version": "1.0.0",
+  "channel": "next",
+  "issuedAt": "2026-06-06T21:02:01.684Z",
+  "brand": {
+    "name": "NEXUS Next",
+    "subtitle": "AI Focus Desktop",
+    "accent": "#2f7d6d",
+    "supportLabel": "Emergent Intelligence"
+  },
+  "engine": {
+    "mode": "hybrid-remote",
+    "api": "nexus-hybrid/1"
+  },
+  "transport": {
+    "endpoint": "ws://127.0.0.1:47900/engine",
+    "requireTls": false,
+    "allowInsecure": true,
+    "tlsPins": [],
+    "minTlsVersion": "TLSv1.2",
+    "requireClientCert": false
+  },
+  "rlmPolicy": {
+    "enabled": true,
+    "licenseMode": "signed-remote",
+    "maxSeats": 1,
+    "offlineGraceDays": 14,
+    "renewalRequired": true,
+    "expiresAt": "2027-01-01T00:00:00.000Z"
+  },
+  "dataPolicy": {
+    "workspace": "userData",
+    "recursiveMemory": true,
+    "localFirst": false,
+    "exportReceipts": true
+  },
+  "features": [
+    {
+      "id": "mission-control",
+      "label": "Mission Control",
+      "enabled": true
+    },
+    {
+      "id": "knowledge-map",
+      "label": "Knowledge Map",
+      "enabled": true
+    },
+    {
+      "id": "work-trace",
+      "label": "Work Trace",
+      "enabled": true
+    },
+    {
+      "id": "document-studio",
+      "label": "Document Studio",
+      "enabled": true
+    },
+    {
+      "id": "voice",
+      "label": "Voice",
+      "enabled": true
+    },
+    {
+      "id": "vision-gestures",
+      "label": "Vision Gestures",
+      "enabled": false
+    }
+  ],
+  "permissions": {
+    "filesystem": [
+      "userData",
+      "downloads"
+    ],
+    "network": [
+      "engineEndpoint",
+      "configuredProviders"
+    ],
+    "shell": []
+  },
+  "signature": {
+    "algorithm": "ed25519",
+    "signedAt": "2026-06-06T21:02:01.684Z",
+    "value": "JAYwCSHPI238Ixjaqzktma7ydT8Chpnh0nD6gRVKL6z22+ej5633Ksc3vsf9mJ2CTRj6EYcNxCgDHdfIV3vdAg=="
+  }
+}

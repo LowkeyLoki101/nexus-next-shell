@@ -1,0 +1,345 @@
+.nexus-pulse-panel {
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.nexus-pulse-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nexus-pulse-header strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 1rem;
+  color: var(--next-text-primary);
+}
+
+.nexus-pulse-body {
+  display: grid;
+  grid-template-columns: 172px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.nexus-pulse-core {
+  position: relative;
+  width: 172px;
+  height: 172px;
+  border-radius: 999px;
+  border: 1px solid rgba(216, 181, 106, 0.18);
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 230, 168, 0.18), transparent 20%),
+    radial-gradient(circle at center, rgba(216, 181, 106, 0.14), transparent 56%),
+    linear-gradient(180deg, rgba(28, 19, 12, 0.96), rgba(12, 8, 5, 0.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    inset 0 18px 34px rgba(255, 226, 159, 0.05),
+    inset 0 -26px 42px rgba(0, 0, 0, 0.26),
+    0 14px 28px rgba(0, 0, 0, 0.24);
+  color: var(--next-text-primary);
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.nexus-pulse-core:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    inset 0 18px 34px rgba(255, 226, 159, 0.05),
+    inset 0 -26px 42px rgba(0, 0, 0, 0.26),
+    0 0 0 3px rgba(var(--next-accent-rgb), 0.18),
+    0 14px 28px rgba(0, 0, 0, 0.24);
+}
+
+.nexus-pulse-ring {
+  position: absolute;
+  inset: 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 222, 158, 0.18);
+  pointer-events: none;
+  transition: transform 220ms ease, opacity 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.nexus-pulse-ring--middle {
+  inset: 32px;
+  border-color: rgba(255, 222, 158, 0.12);
+}
+
+.nexus-pulse-ring--inner {
+  inset: 48px;
+  border-color: rgba(255, 222, 158, 0.1);
+}
+
+.nexus-pulse-core-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+}
+
+.nexus-pulse-core-center svg {
+  width: 60px;
+  height: 60px;
+  fill: none;
+  stroke: rgba(245, 214, 144, 0.96);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 16px rgba(255, 230, 168, 0.2));
+}
+
+.nexus-pulse-core.is-idle .nexus-pulse-ring--outer {
+  animation: nexusPulseBreath 4.2s ease-in-out infinite;
+}
+
+.nexus-pulse-core.is-listening .nexus-pulse-ring--outer,
+.nexus-pulse-core.is-listening .nexus-pulse-ring--middle {
+  animation: nexusPulseListen 1.8s ease-out infinite;
+}
+
+.nexus-pulse-core.is-transcribing .nexus-pulse-ring--outer {
+  animation: nexusPulseSweep 1.15s linear infinite;
+}
+
+.nexus-pulse-core.is-thinking .nexus-pulse-ring--middle {
+  animation: nexusPulseOrbit 2.6s linear infinite;
+}
+
+.nexus-pulse-core.is-tool_calling .nexus-pulse-ring--outer,
+.nexus-pulse-core.is-browsing .nexus-pulse-ring--outer {
+  animation: nexusPulseSweep 1s linear infinite;
+}
+
+.nexus-pulse-core.is-browsing .nexus-pulse-ring--middle {
+  animation: nexusPulseOrbit 1.8s linear infinite;
+}
+
+.nexus-pulse-core.is-speaking .nexus-pulse-ring--outer,
+.nexus-pulse-core.is-speaking .nexus-pulse-ring--middle,
+.nexus-pulse-core.is-speaking .nexus-pulse-ring--inner {
+  animation: nexusPulseSpeak 0.9s ease-in-out infinite;
+}
+
+.nexus-pulse-core.is-needs_confirmation .nexus-pulse-ring {
+  border-color: rgba(255, 189, 88, 0.55);
+  box-shadow: 0 0 0 1px rgba(255, 189, 88, 0.08), 0 0 26px rgba(255, 189, 88, 0.16);
+}
+
+.nexus-pulse-core.is-error .nexus-pulse-ring {
+  border-color: rgba(255, 111, 111, 0.54);
+  animation: nexusPulseError 0.5s linear 3;
+}
+
+.nexus-pulse-core.is-muted .nexus-pulse-core-center svg {
+  stroke: rgba(205, 195, 167, 0.72);
+}
+
+.nexus-pulse-copy {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.nexus-pulse-status {
+  font-size: 0.95rem;
+  color: var(--next-accent-soft);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nexus-pulse-live-text {
+  font-size: 1rem;
+  line-height: 1.52;
+  color: var(--next-text-primary);
+  min-height: 56px;
+}
+
+.nexus-pulse-tool {
+  display: grid;
+  gap: 6px;
+}
+
+.nexus-pulse-tool p {
+  margin: 0;
+  color: var(--next-text-secondary);
+  line-height: 1.45;
+}
+
+.nexus-pulse-chip {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(216, 181, 106, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--next-text-primary);
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.nexus-pulse-alert {
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 190, 92, 0.2);
+  background: rgba(255, 190, 92, 0.08);
+  color: var(--next-text-primary);
+  line-height: 1.45;
+}
+
+.nexus-pulse-alert.is-error {
+  border-color: rgba(255, 111, 111, 0.24);
+  background: rgba(255, 111, 111, 0.08);
+}
+
+.nexus-pulse-secondary {
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(216, 181, 106, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    rgba(26, 18, 12, 0.92);
+  color: var(--next-text-primary);
+  cursor: pointer;
+}
+
+.nexus-pulse-timeline {
+  display: grid;
+  gap: 8px;
+}
+
+.nexus-pulse-timeline-item {
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(216, 181, 106, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+  display: grid;
+  gap: 6px;
+}
+
+.nexus-pulse-timeline-item.is-error {
+  border-color: rgba(255, 111, 111, 0.18);
+}
+
+.nexus-pulse-timeline-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.nexus-pulse-timeline-top strong,
+.nexus-pulse-timeline-top span,
+.nexus-pulse-timeline-item p {
+  margin: 0;
+}
+
+.nexus-pulse-timeline-top span {
+  color: var(--next-text-tertiary);
+  font-size: 0.82rem;
+}
+
+.nexus-pulse-timeline-item p {
+  color: var(--next-text-secondary);
+  line-height: 1.45;
+}
+
+@keyframes nexusPulseBreath {
+  0%,
+  100% {
+    transform: scale(0.98);
+    opacity: 0.76;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+@keyframes nexusPulseListen {
+  0% {
+    transform: scale(0.82);
+    opacity: 0.18;
+  }
+  38% {
+    opacity: 0.72;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes nexusPulseSweep {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: inset 0 0 0 1px rgba(255, 223, 161, 0.06), 0 0 0 rgba(255, 223, 161, 0);
+  }
+  50% {
+    box-shadow: inset 0 0 0 1px rgba(255, 223, 161, 0.18), 0 0 24px rgba(255, 223, 161, 0.14);
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: inset 0 0 0 1px rgba(255, 223, 161, 0.06), 0 0 0 rgba(255, 223, 161, 0);
+  }
+}
+
+@keyframes nexusPulseOrbit {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.02);
+  }
+}
+
+@keyframes nexusPulseSpeak {
+  0%,
+  100% {
+    transform: scale(0.94);
+    opacity: 0.78;
+  }
+  50% {
+    transform: scale(calc(0.96 + var(--nexus-pulse-audio, 0.4) * 0.12));
+    opacity: 1;
+  }
+}
+
+@keyframes nexusPulseError {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+@media (max-width: 980px) {
+  .nexus-pulse-body {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .nexus-pulse-copy {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nexus-pulse-core,
+  .nexus-pulse-ring {
+    animation: none !important;
+    transition: none !important;
+  }
+}

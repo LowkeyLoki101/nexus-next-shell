@@ -1,0 +1,16 @@
+name: shell-ci
+on:
+  push: { branches: [main] }
+  pull_request: { branches: [main] }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm install --no-audit --no-fund
+      - run: npm run typecheck --if-present
+      - run: npm run build:web
+      - run: npm run build:electron
+      - run: node scripts/verify-capsule.mjs capsule/capsule.json capsule/public-key.pem

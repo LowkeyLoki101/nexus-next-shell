@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "NEXUS Next",
+  "version": "1.0.0",
+  "identifier": "com.eignexus.next.shell",
+  "build": {
+    "frontendDist": "../dist/renderer",
+    "devUrl": "http://localhost:5173"
+  },
+  "app": {
+    "windows": [{ "title": "NEXUS Next", "width": 1280, "height": 860, "resizable": true }],
+    "security": { "csp": null }
+  },
+  "bundle": { "active": true, "targets": "all", "icon": ["icons/icon.png"] }
+}
